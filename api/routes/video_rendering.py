@@ -11,6 +11,7 @@ from typing import Union
 import uuid
 import time
 import requests
+from pathlib import Path
 
 video_rendering_bp = Blueprint("video_rendering", __name__)
 
@@ -47,7 +48,7 @@ def move_to_public_folder(
     """
     Moves the video to the public folder and returns the URL.
     """
-    public_folder = os.path.join(os.path.dirname(__file__), "public")
+    public_folder = os.path.join(Path(__file__).resolve().parent.parent, "public")
     os.makedirs(public_folder, exist_ok=True)
 
     new_file_name = f"{video_storage_file_name}.mp4"
